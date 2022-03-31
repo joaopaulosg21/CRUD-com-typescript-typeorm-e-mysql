@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 import config from "../configs/config";
+import Post from "./entity/Post";
 import { User } from "./entity/User";
+
 
 const myDataSource = new DataSource({
     type:"mysql",
@@ -9,7 +11,7 @@ const myDataSource = new DataSource({
     username:'root',
     password:config.password,
     database:config.database,
-    entities:[User],
+    entities:[User,Post],
     synchronize:true
 });
 

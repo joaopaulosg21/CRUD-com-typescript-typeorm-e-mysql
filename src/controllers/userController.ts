@@ -1,6 +1,7 @@
 import { User } from "../database/entity/User";
 import { Request,Response } from "express";
 import myDataSource from "../database/data-source";
+import AuthController from "./authController";
 
 class UserController{
     async newUser(req:Request,res:Response){
@@ -53,11 +54,22 @@ class UserController{
         try{
             const user = await myDataSource.manager.findOneBy(User,{id:id});
             if(user){
-                await myDataSource.manager.remove(user)
+                await myDataSource.manager.remove(user);
                 res.status(200).json(`User deletado`);
             }else{
                 res.status(500).json(`User não existe`);
             }
+        }catch(error){
+            res.status(500).json(error);
+        }
+    }
+
+    async userLogin(req:Request,res:Response){
+        const auth = new AuthController();
+        const {username,password} = req.body;
+        try{
+            const response = await auth.login(username,password)
+            res.status(200).json(response)
         }catch(error){
             res.status(500).json(error);
         }

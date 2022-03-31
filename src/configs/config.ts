@@ -10,5 +10,6 @@ export default {
     host:process.env.HOST,
     username:process.env.USERNAME,
     password:process.env.PASSWORD,
-    database:process.env.DATABASE
+    database:process.env.DATABASE,
+    secret:process.env.SECRET
 }
