@@ -1,0 +1,24 @@
+{
+  "name": "crud_com_typescript_e_typeorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"tsc --watch",
+    "start":"nodemon dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.23"
+  }
+}
