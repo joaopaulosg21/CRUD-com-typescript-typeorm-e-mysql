@@ -6,10 +6,10 @@ class Post{
     @PrimaryGeneratedColumn()
     id:number;
 
-    @Column()
+    @Column({nullable: false})
     title:string;
 
-    @Column('text')
+    @Column('text',{nullable: false})
     text:string
 
     @CreateDateColumn()
