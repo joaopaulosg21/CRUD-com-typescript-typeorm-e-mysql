@@ -7,9 +7,11 @@ const postRouter = Router();
 
 postRouter.post('/add',auth.verifyToken,post.newPost);
 
-postRouter.get('/',post.viewPosts);
+postRouter.get('/',post.getPosts);
 
-postRouter.put('/update/:id',auth.verifyToken,post.updatePost)
+postRouter.put('/update/:id',auth.verifyToken,post.updatePost);
+
+postRouter.delete('/delete/:id',auth.verifyToken,post.deletePost);
 
 
 export default postRouter;
