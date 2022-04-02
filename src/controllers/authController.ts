@@ -1,4 +1,4 @@
-import { decode, sign,verify } from "jsonwebtoken";
+import { sign,verify } from "jsonwebtoken";
 import { User } from "../database/entity/User";
 import { Request,Response,NextFunction } from "express";
 import myDataSource from "../database/data-source";

@@ -1,10 +1,9 @@
 
 import Post from "../database/entity/Post";
 import myDataSource from "../database/data-source";
-import AuthController from "./authController";
 import { User } from "../database/entity/User";
 import config from "../configs/config";
-import { JwtPayload, verify } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { Request,Response } from "express";
 
 class PostController{
@@ -25,7 +24,7 @@ class PostController{
                         post.user = user;
                     }
                     await myDataSource.manager.save(post)
-                    res.status(201).json(`${post.title} cadastrado com sucesso`);
+                    res.status(201).json({msg:`${post.title} cadastrado com sucesso`});
                 }catch(error){
                     res.status(500).json(error);
                 }
@@ -39,7 +38,7 @@ class PostController{
             const posts = await myDataSource.manager.find(Post);
             res.status(200).json(posts);
         }catch(error){
-            res.status(500).json(error);
+            res.status(500).json({msg:error});
         }
     }
 
@@ -57,12 +56,12 @@ class PostController{
                     if(post){
                         post.text = text;
                         await myDataSource.manager.save(post);
-                        res.status(200).json(`Post atualizado`);
+                        res.status(200).json({msg:`Post atualizado`});
                     }else{
-                        res.status(401).json(`Você não pode editar esse post`);
+                        res.status(401).json({msg:`Você não pode editar esse post`});
                     }
                 }else{
-                    res.status(401).json(`Você não está logado`);
+                    res.status(401).json({msg:`Você não está logado`});
                 }
             }
             
@@ -81,9 +80,9 @@ class PostController{
                     const post = await myDataSource.manager.findOneBy(Post,{id:id,user:user});
                     if(post){
                         await myDataSource.manager.remove(post);
-                        res.status(200).json(`Post deletado`);
+                        res.status(200).json({msg:`Post deletado`});
                     }else{
-                        res.status(401).json(`Você não pode deletar esse post ou post não existe`);
+                        res.status(401).json({msg:`Você não pode deletar esse post ou post não existe`});
                     }
                 }
             }
